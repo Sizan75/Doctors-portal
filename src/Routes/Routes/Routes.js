@@ -3,6 +3,7 @@ import DashboardLayout from "../../layout/DashboardLayout";
 import Main from "../../layout/Main";
 import Appointment from "../../Pages/Appoinment/Appointment";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyAppointment from "../../Pages/Dashboard/MyAppointment/MyAppointment";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/LogIn/LogIn";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -40,7 +41,7 @@ export const router= createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <MyAppointment></MyAppointment>
             }
         ]
     }
