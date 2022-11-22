@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-day-picker/dist/style.css';
 import AuthProvider from './contexts/AuthProvider';
-import {useQuery,  QueryClient,  QueryClientProvider} from '@tanstack/react-query'
+import {  QueryClient,  QueryClientProvider} from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
