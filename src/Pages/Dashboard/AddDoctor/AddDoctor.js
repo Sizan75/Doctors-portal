@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Shared/Loading/Loading';
+import { Result } from 'postcss';
 const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey= process.env.REACT_APP_img_key
@@ -28,6 +29,24 @@ const AddDoctor = () => {
         .then(imgData=>{
             if(imgData.success){
             console.log(imgData.data.url)
+            const doctor= {
+                name: data.name,
+                email: data.email,
+                speciality: data.speciality,
+                image: imgData.data.url
+            }
+            fetch('http://localhost:5000/doctors',{
+                method: "POST",
+                headers:{
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(doctor)
+            })
+            .then(res=>res.json())
+            .then(result=>{
+                console.log(result)
+            })
             }
         })
     }
