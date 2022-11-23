@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Shared/Loading/Loading';
 const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const imageHostKey= process.env.REACT_APP_img_key
     const { data: specialities, isLoading } = useQuery({
         queryKey: ['specialty'],
         queryFn: async () => {
@@ -14,7 +15,21 @@ const AddDoctor = () => {
     })
 
     const handleAddDoctor = data => {
-        console.log(data)
+       const image= data.img[0]
+       
+       const formData= new FormData();
+       formData.append('image', image);
+       const url= `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+        fetch(url,{
+            method:"POST",
+            body:formData
+        })
+        .then(res=> res.json())
+        .then(imgData=>{
+            if(imgData.success){
+            console.log(imgData.data.url)
+            }
+        })
     }
     if (isLoading) {
         return <Loading></Loading>
