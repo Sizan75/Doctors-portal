@@ -18,7 +18,7 @@ const AddDoctor = () => {
     })
 
     const handleAddDoctor = data => {
-       const image= data.img[0]
+       const image= data.imageURL[0]
        
        const formData= new FormData();
        formData.append('image', image);
